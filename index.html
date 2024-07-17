@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap" rel="stylesheet">
+    <title>ictfromabc Clone</title>
+</head>
+<body>
+    <main id="main">
+        <div class="background">
+            <div class="container">
+                <aside class="side-panel">
+                    <div class="side-panel-header">
+                        <h1 id="sph1">ict</h1>
+                        <h1 id="sph2">fromabc</h1>
+                    </div>
+                    <div class="side-panel-body">
+                        <div class="les-tue-container" id="les-tue-container">
+                            <!-- <a href="#" class="my-lessons side-panel-element" id="selected"><div id="spe-icon"><img src="res/imgs/ebook.svg" alt=""></div><p id="spe-text">My Lessons</p></a>
+                            <a href="#" class="my-tutes side-panel-element"><div id="spe-icon"><img src="res/imgs/tute.svg" alt=""></div><p id="spe-text">My Tutes</p></a> -->
+                        </div>
+                        <div class="element-container" id="courses-container">
+                            <h1 class="ec-title">Courses</h1>
+                        </div>
+                        <div class="element-container" id="pastpapers-container">
+                            <h1 class="ec-title">Past Papers</h1>
+                        </div>
+                        <div class="element-container" id="instruction-container">
+                            <h1 class="ec-title">Instructions</h1>
+                        </div>
+                    </div>
+                </aside>
+                <div class="content-panel">
+                    <div class="content-panel-header">
+                        <div class="search-box">
+                            <img src="res/imgs/search.svg" alt="" class="icon">
+                            <div class="text-box"><input type="search" id="search" placeholder="Type here to search"></div>
+                        </div>
+                        <div class="status">
+                            <img src="res/imgs/bell.svg" alt="" class="notifications" onclick="notificationButtonPressed()">
+                            <img src="res/imgs/profile.svg" alt="" class="profile" onclick="profileButtonPressed()">
+                        </div>
+                    </div>
+                    <div class="content-panel-body">
+                        <h1 class="cpb-title">My Lessons</h1>
+                        <div id="lesson-container">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
