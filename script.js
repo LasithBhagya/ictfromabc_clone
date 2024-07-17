@@ -40,12 +40,12 @@ const lessons = [
     "Java"
 ];
 const tutes = [
-    "June Month",
-    "July Month",
-    "August Month",
-    "September Month",
-    "October Month",
-    "November Month"
+    ["June Month", true],
+    ["July Month", true],
+    ["August Month", false],
+    ["September Month", false],
+    ["October Month", false],
+    ["November Month", false]
 ];
 
 // Lessons And Tutes
@@ -81,8 +81,94 @@ for (let i in instructions) {
 }
 
 // lessons
-let main = document.createElement('main');
-for (let i in lessons) {
+// let main = document.createElement('main');
+// for (let i in lessons) {
+//     createCPLessonElement(lessons[i]);
+// }
+// main.id = 'lesson-container';
+// contentPanel.appendChild(main);
+// tutes
+// let main = document.createElement('main');
+// for (let i in tutes) {
+//     createCPTuteElement(tutes[i][0], tutes[i][1]);
+// }
+// main.id = 'lesson-container';
+// contentPanel.appendChild(main);
+
+function selectCategory(element) {
+    // Deselecting past element
+    navigationalElements[pastElement][1] = false;
+    navigationalElements[pastElement][0].id = '';
+    // Selecting new element
+    navigationalElements[element][1] = true;
+    navigationalElements[element][0].id = 'selected';
+    pastElement = element;
+    
+    // *** Switching like this is just for testing purposes. ***
+    if (navigationalElements[0][1] === true) {
+        // lessons
+        contentPanel.innerHTML = '<h1 class="cpb-title">My Lessons</h1>';
+        let lessonContainer = document.createElement('main');
+        for (let i in lessons) {
+            createCPLessonElement(lessons[i], lessonContainer);
+        }
+        lessonContainer.id = 'lesson-container';
+        contentPanel.appendChild(lessonContainer);
+    } else if (navigationalElements[1][1] === true) {
+        // tutes
+        contentPanel.innerHTML = '<h1 class="cpb-title">My Lessons</h1>';
+        let tuteContainer = document.createElement('main');
+        for (let i in tutes) {
+            createCPTuteElement(tutes[i][0], tutes[i][1], tuteContainer);
+        }
+        tuteContainer.id = 'tute-container';
+        contentPanel.appendChild(tuteContainer);
+    }
+
+    console.log(navigationalElements[element][0].innerText + ' Selected')
+}
+selectCategory(0)
+
+for (let i in navigationalElements) {
+    navigationalElements[i][0].addEventListener("click", () => {
+        selectCategory(i);
+    })
+}
+
+function createCPTuteElement(_tute, _status, _container) {
+    const element = document.createElement('div');
+    const title = document.createElement('h1');
+    const div = document.createElement('div');
+    const p = document.createElement('p');
+    element.classList = 'tute-card';
+    title.id = `tute-title`;
+    div.classList = `tct-underline`;
+    p.id = `tute-details`;
+    title.innerText = _tute;
+    p.innerText = 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Placeat veritatis dignissimos, accusamus, molestias nulla laudantium maiores doloremque.';
+    element.appendChild(title);
+    element.appendChild(div);
+    element.appendChild(p);
+    if (_status) {
+        const s = document.createElement('p');
+        s.id = `tute-status-text`;
+        s.innerText = 'delivered';
+        element.appendChild(s);
+        const button = document.createElement('a');
+        button.id = `tc-ro-button`;
+        button.href = `#`;
+        button.innerText = 'Had issues with tute?';
+        element.appendChild(button);
+    } else {
+        const button = document.createElement('a');
+        button.id = `tc-o-button`;
+        button.href = `#`;
+        button.innerText = 'Pre-Order';
+        element.appendChild(button);
+    }
+    _container.appendChild(element);
+}
+function createCPLessonElement(_lesson, _container) {
     const element = document.createElement('div');
     const title = document.createElement('h1');
     const div = document.createElement('div');
@@ -95,17 +181,14 @@ for (let i in lessons) {
     button.id = `lc-button`;
     button.href = `#`;
     button.innerText = 'Join';
-    title.innerText = lessons[i];
+    title.innerText = _lesson;
     p.innerText = 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Placeat veritatis dignissimos, accusamus, molestias nulla laudantium maiores doloremque.';
     element.appendChild(title);
     element.appendChild(div);
     element.appendChild(p);
     element.appendChild(button);
-    main.appendChild(element);
+    _container.appendChild(element);
 }
-main.id = 'lesson-container';
-contentPanel.appendChild(main);
-
 function createSPElement(_link, _imgSrc, _imgAlt, _pText, _container, _category) {
     const element = document.createElement('a');
     const divIconholder = document.createElement('div');
@@ -123,25 +206,6 @@ function createSPElement(_link, _imgSrc, _imgAlt, _pText, _container, _category)
     element.appendChild(p);
     _container.appendChild(element);
     navigationalElements.push([element, false, _category]);
-}
-
-function selectCategory(element) {
-    // Deselecting past element
-    navigationalElements[pastElement][1] = false;
-    navigationalElements[pastElement][0].id = '';
-    // Selecting new element
-    navigationalElements[element][1] = true;
-    navigationalElements[element][0].id = 'selected';
-    pastElement = element;
-
-    console.log(navigationalElements[element][0].innerText + ' Selected')
-}
-selectCategory(0)
-
-for (let i in navigationalElements) {
-    navigationalElements[i][0].addEventListener("click", () => {
-        selectCategory(i);
-    })
 }
 
 // const update = () => {

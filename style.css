@@ -12,8 +12,10 @@
     --light4: #ccc;
     --light5: #bbb;
     --red1: #f00;
+    --red1x: #a00;
     --red2: #5c0000;
     --red3: #161111;
+    --green1: #0f0;
 }
 * {
     margin: 0;
@@ -255,6 +257,15 @@
     height: 100%;
     overflow-y: scroll;
 }
+.content-panel-body > #tute-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin: 1em 1em 1em 1em;
+    width: calc(100% - 2em);
+    height: 100%;
+    overflow-y: scroll;
+}
 .lesson-card {
     display: flex;
     flex-direction: column;
@@ -293,6 +304,69 @@
     font-family: Fredoka;
     font-weight: 550;
     font-size: 1em;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 0.5em;
+    color: var(--light1);
+    background-color: var(--red1);
+}
+.tute-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    margin: 1em;
+    padding: 1em;
+    width: 28em;
+    height: 16em;
+    border-radius: 1em;
+    background-color: var(--dark3);
+    box-shadow: 0px 0px 10px 10px var(--dark2);
+}
+.tute-card > #tute-title {
+    text-align: center;
+    font-family: Fredoka;
+    font-size: 2.5em;
+    color: var(--light1);
+}
+.tute-card > .tct-underline {
+    margin: 0.5em 0em 0.5em 0em;
+    width: 90%;
+    height: 0.2em;
+    background-color: var(--red1);
+}
+.tute-card > #tute-details {
+    margin: 1em;
+    text-align: center;
+    font-family: Fredoka;
+    font-size: 1em;
+    color: var(--light3);
+}
+.tute-card > #tute-status-text {
+    text-align: center;
+    font-style: italic;
+    font-family: Fredoka;
+    font-size: 1em;
+    color: var(--green1);
+}
+.tute-card > #tc-ro-button {
+    padding: 1em 2em 1em 2em;
+    margin: 0.5em;
+    font-family: Fredoka;
+    font-weight: 550;
+    font-size: 0.8em;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 0.5em;
+    color: var(--light1);
+    background-color: var(--red1x);
+}
+.tute-card > #tc-o-button {
+    padding: 1em 2em 1em 2em;
+    margin: 0.5em;
+    font-family: Fredoka;
+    font-weight: 550;
+    font-size: 0.8em;
     text-align: center;
     text-decoration: none;
     border-radius: 0.5em;
