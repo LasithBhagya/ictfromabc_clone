@@ -2,12 +2,9 @@ const ltContainer = document.getElementById('les-tue-container');
 const courseContainer = document.getElementById('courses-container');
 const pastpapersContainer = document.getElementById('pastpapers-container');
 const instructionContainer = document.getElementById('instruction-container');
-const lessonContainer = document.getElementById('lesson-container');
+const contentPanel = document.getElementById('content-panel-body');
 
 var navigationalElements = [];
-var speCourses = [];
-var spePastpapers = [];
-var speInstructions = [];
 
 let pastElement = 0;
 
@@ -33,7 +30,6 @@ const pastpapers = [
 const instructions = [
     "Payment Details"
 ];
-
 // Content Panel
 const lessons = [
     "HTML",
@@ -69,70 +65,23 @@ for (let i in lt) {
     element.appendChild(divIconholder);
     element.appendChild(p);
     ltContainer.appendChild(element);
-    navigationalElements.push([element, false]);
+    navigationalElements.push([element, false, "lessonsAndTutes"]);
 }
 // Courses
 for (let i in courses) {
-    const element = document.createElement('a');
-    const divIconholder = document.createElement('div');
-    const divIcon = document.createElement('img');
-    const p = document.createElement('p');
-    element.href = '#';
-    element.classList = 'side-panel-element';
-    divIcon.src = 'res/imgs/library-book.svg';
-    divIcon.alt = '';
-    divIconholder.id = `spe-icon`;
-    p.id = `spe-text`;
-    p.innerText = courses[i];
-    divIconholder.appendChild(divIcon);
-    element.appendChild(divIconholder);
-    element.appendChild(p);
-    courseContainer.appendChild(element);
-    navigationalElements.push([element, false]);
+    createSPElement('#', 'res/imgs/library-book.svg', '', courses[i], courseContainer, "Courses");
 }
 // Pastpapers
 for (let i in pastpapers) {
-    const element = document.createElement('a');
-    const divIconHolder = document.createElement('div');
-    const divIcon = document.createElement('img');
-    const p = document.createElement('p');
-    element.href = '#';
-    element.classList = 'side-panel-element';
-    divIcon.src = 'res/imgs/book.svg';
-    divIcon.alt = '';
-    divIconHolder.id = `spe-icon`;
-    p.id = `spe-text`;
-    p.innerText = pastpapers[i];
-    divIconHolder.appendChild(divIcon);
-    element.appendChild(divIconHolder);
-    element.appendChild(p);
-    pastpapersContainer.appendChild(element);
-    navigationalElements.push([element, false]);
+    createSPElement('#', 'res/imgs/book.svg', '', pastpapers[i], pastpapersContainer, "Pastpapers");
 }
 // Instructions
 for (let i in instructions) {
-    const element = document.createElement('a');
-    const divIconHolder = document.createElement('div');
-    const divIcon = document.createElement('img');
-    const p = document.createElement('p');
-    const divIndicator = document.createElement('div');
-    element.href = '#';
-    element.classList = 'side-panel-element';
-    divIcon.src = 'res/imgs/payment-method.svg';
-    divIcon.alt = '';
-    divIconHolder.id = `spe-icon`;
-    p.id = `spe-text`;
-    divIndicator.id = `spe-indicator`;
-    p.innerText = instructions[i];
-    divIconHolder.appendChild(divIcon);
-    element.appendChild(divIconHolder);
-    element.appendChild(p);
-    element.appendChild(divIndicator);
-    instructionContainer.appendChild(element);
-    navigationalElements.push([element, false]);
+    createSPElement('#', 'res/imgs/payment-method.svg', '', instructions[i], instructionContainer, "Instructions");
 }
 
 // lessons
+let main = document.createElement('main');
 for (let i in lessons) {
     const element = document.createElement('div');
     const title = document.createElement('h1');
@@ -152,7 +101,28 @@ for (let i in lessons) {
     element.appendChild(div);
     element.appendChild(p);
     element.appendChild(button);
-    lessonContainer.appendChild(element);
+    main.appendChild(element);
+}
+main.id = 'lesson-container';
+contentPanel.appendChild(main);
+
+function createSPElement(_link, _imgSrc, _imgAlt, _pText, _container, _category) {
+    const element = document.createElement('a');
+    const divIconholder = document.createElement('div');
+    const divIcon = document.createElement('img');
+    const p = document.createElement('p');
+    element.href = _link;
+    element.classList = 'side-panel-element';
+    divIcon.src = _imgSrc;
+    divIcon.alt = _imgAlt;
+    divIconholder.id = `spe-icon`;
+    p.id = `spe-text`;
+    p.innerText = _pText;
+    divIconholder.appendChild(divIcon);
+    element.appendChild(divIconholder);
+    element.appendChild(p);
+    _container.appendChild(element);
+    navigationalElements.push([element, false, _category]);
 }
 
 function selectCategory(element) {
@@ -167,13 +137,6 @@ function selectCategory(element) {
     console.log(navigationalElements[element][0].innerText + ' Selected')
 }
 selectCategory(0)
-
-function notificationButtonPressed() {
-    console.log('Button Pressed');
-}
-function profileButtonPressed() {
-    console.log('Button Pressed');
-}
 
 for (let i in navigationalElements) {
     navigationalElements[i][0].addEventListener("click", () => {
