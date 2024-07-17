@@ -163,6 +163,8 @@ function selectCategory(element) {
     navigationalElements[element][1] = true;
     navigationalElements[element][0].id = 'selected';
     pastElement = element;
+
+    console.log(navigationalElements[element][0].innerText + ' Selected')
 }
 selectCategory(0)
 
@@ -184,5 +186,3 @@ for (let i in navigationalElements) {
 //     requestAnimationFrame(update);
 // }
 // update();
-
-console.log(navigationalElements);
